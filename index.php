@@ -1,10 +1,21 @@
 <?php
-// ----- DEEL 1: DE PHP-LOGICA (DE MOTOR) -----
+// ----- DEEL 0: DE UITSMIJTER (NIEUW) -----
+session_start(); // Dit MOET de allereerste regel zijn.
+
+// De controle: Is er een 'user_id' ticket in de kluis?
+if ( !isset($_SESSION['user_id']) ) {
+    // Geen ticket? Je hoort hier niet. Terug naar de poort.
+    header('Location: login.php');
+    exit; // STOP HET SCRIPT.
+}
+
+// ----- DEEL 1: DE PHP-LOGICA (NU AANGEPAST) -----
+// Als we hier komen, is de gebruiker ingelogd.
 require_once 'connect.php';
 
-$huidige_user_id = 1;
-$resultaten = []; // Maak de variabele 'leeg'
-$gebruikersnaam = ''; // Maak de variabele 'leeg'
+// NIET MEER HARDCODED! We lezen het ticket.
+$huidige_user_id = $_SESSION['user_id']; 
+$resultaten = [];
 
 try {
     $sql = "SELECT 
@@ -23,56 +34,28 @@ try {
     
     $resultaten = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Als we resultaten hebben, pakken we de naam van de gebruiker
-    // (Deze is in elke rij hetzelfde, dus we pakken gewoon de eerste)
-    if (!empty($resultaten)) {
-        $gebruikersnaam = $resultaten[0]['naam'];
-    }
+    // DEZE LOGICA IS NU OVERBODIG. We hebben de naam al.
+    // if (!empty($resultaten)) {
+    //     $gebruikersnaam = $resultaten[0]['naam'];
+    // }
 
 } catch (PDOException $e) {
-    // In een echt project log je dit, nu tonen we de fout
     die("Fout bij het ophalen van data: " . $e->getMessage());
 }
 
-// ----- DEEL 2: DE HTML-PRESENTATIE (DE DISPLAY) -----
-// Vanaf hier sturen we HTML naar de browser
+// ----- DEEL 2: DE HTML-PRESENTATIE -----
 ?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mijn Oefeningen</title>
-    <style>
-        body { font-family: sans-serif; margin: 2em; }
-        .oefening { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
-        h1 { color: #333; }
-        h2 { color: #555; }
-    </style>
 </head>
 <body>
 
-    <h1>Welkom, <?php echo htmlspecialchars($gebruikersnaam); ?></h1>
+</br><a href="logout.php">Log uit</a></br>
+
+    <h1>Welkom, <?php echo htmlspecialchars($_SESSION['user_naam']); ?></h1>
     <p>Hier zijn jouw opgeslagen oefeningen:</p>
 
-    <hr> <?php if (empty($resultaten)): ?>
-    
-        <p>Je hebt nog geen oefeningen aangemaakt.</p>
-    
-    <?php else: ?>
-    
-        <?php foreach ($resultaten as $oefening): ?>
-            
-            <div class="oefening">
-                
-                <h2><?php echo htmlspecialchars($oefening['titel']); ?></h2>
-                <p><?php echo htmlspecialchars($oefening['beschrijving']); ?></p>
-            
-            </div>
-        
-        <?php endforeach; ?>
-    
-    <?php endif; ?>
-
-</body>
+    </body>
 </html>

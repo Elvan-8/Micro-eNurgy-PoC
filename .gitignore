@@ -1,0 +1,6 @@
+# macOS rommel
+.DS_Store
+
+# PHP-storm/VS Code rommel (goede gewoonte)
+.idea/
+.vscode/

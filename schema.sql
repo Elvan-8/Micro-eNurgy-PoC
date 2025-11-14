@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 14, 2025 at 11:33 AM
--- Server version: 8.0.40
--- PHP Version: 8.3.14
+-- Gegenereerd op: 14 nov 2025 om 14:31
+-- Serverversie: 8.0.40
+-- PHP-versie: 8.3.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `excercises`
+-- Tabelstructuur voor tabel `excercises`
 --
 
 CREATE TABLE `excercises` (
@@ -35,71 +35,73 @@ CREATE TABLE `excercises` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `excercises`
+-- Gegevens worden geëxporteerd voor tabel `excercises`
 --
 
 INSERT INTO `excercises` (`excercise_id`, `titel`, `beschrijving`, `user_id`) VALUES
 (1, 'Eerste oefening', 'Dit is hoe je de oefening uitvoert.', 1),
-(2, 'Oefening 2', 'Deze oefening is echt heel goed.', 2);
+(2, 'Oefening 2', 'Deze oefening is echt heel goed.', 2),
+(3, '<script>alert(\'Ik ben gehackt\');</script>', '', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Tabelstructuur voor tabel `users`
 --
 
 CREATE TABLE `users` (
   `user_id` int NOT NULL,
-  `naam` varchar(255) NOT NULL
+  `naam` varchar(255) NOT NULL,
+  `wachtwoord` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `users`
+-- Gegevens worden geëxporteerd voor tabel `users`
 --
 
-INSERT INTO `users` (`user_id`, `naam`) VALUES
-(1, 'Test gebruiker'),
-(2, 'Test gebruiker 2');
+INSERT INTO `users` (`user_id`, `naam`, `wachtwoord`) VALUES
+(1, 'Test gebruiker', '$2y$10$mBbVt3gcUgTXHC4X1GGuLOqVGyFsgGpiA2ISkwFKDbPA2O3VbN.w.'),
+(2, 'Test gebruiker 2', '');
 
 --
--- Indexes for dumped tables
+-- Indexen voor geëxporteerde tabellen
 --
 
 --
--- Indexes for table `excercises`
+-- Indexen voor tabel `excercises`
 --
 ALTER TABLE `excercises`
   ADD PRIMARY KEY (`excercise_id`),
   ADD KEY `fk_excercises_users` (`user_id`);
 
 --
--- Indexes for table `users`
+-- Indexen voor tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
 --
--- AUTO_INCREMENT for table `excercises`
+-- AUTO_INCREMENT voor een tabel `excercises`
 --
 ALTER TABLE `excercises`
-  MODIFY `excercise_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `excercise_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
   MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Constraints for dumped tables
+-- Beperkingen voor geëxporteerde tabellen
 --
 
 --
--- Constraints for table `excercises`
+-- Beperkingen voor tabel `excercises`
 --
 ALTER TABLE `excercises`
   ADD CONSTRAINT `fk_excercises_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
