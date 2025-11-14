@@ -1,6 +1,6 @@
 # Project: Micro-eNurgy-PoC
 
-Een Proof of Concept (POC) back-end applicatie, gebouwd in 10 dagen. Dit project demonstreert de kernlogica voor het ophalen van gebruikersspecifieke data uit een relationele database.
+Een Proof of Concept (POC) back-end applicatie, gebouwd in 2 dagen. Dit project demonstreert de kernlogica voor het ophalen van gebruikersspecifieke data uit een relationele database.
 
 ## Kernfunctionaliteit
 
