@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Gegenereerd op: 14 nov 2025 om 14:31
+-- Gegenereerd op: 14 nov 2025 om 15:28
 -- Serverversie: 8.0.40
 -- PHP-versie: 8.3.14
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `excercises`
+-- Tabelstructuur voor tabel `exercises`
 --
 
-CREATE TABLE `excercises` (
+CREATE TABLE `exercises` (
   `excercise_id` int NOT NULL,
   `titel` varchar(255) NOT NULL,
   `beschrijving` text NOT NULL,
@@ -35,13 +35,14 @@ CREATE TABLE `excercises` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `excercises`
+-- Gegevens worden geëxporteerd voor tabel `exercises`
 --
 
-INSERT INTO `excercises` (`excercise_id`, `titel`, `beschrijving`, `user_id`) VALUES
+INSERT INTO `exercises` (`excercise_id`, `titel`, `beschrijving`, `user_id`) VALUES
 (1, 'Eerste oefening', 'Dit is hoe je de oefening uitvoert.', 1),
 (2, 'Oefening 2', 'Deze oefening is echt heel goed.', 2),
-(3, '<script>alert(\'Ik ben gehackt\');</script>', '', 1);
+(3, '<script>alert(\'Ik ben gehackt\');</script>', '', 1),
+(4, 'Meester oefening', 'Als je deze oefening uitvoert dan ben je meester over je eigen meesterschap.', 1);
 
 -- --------------------------------------------------------
 
@@ -68,11 +69,11 @@ INSERT INTO `users` (`user_id`, `naam`, `wachtwoord`) VALUES
 --
 
 --
--- Indexen voor tabel `excercises`
+-- Indexen voor tabel `exercises`
 --
-ALTER TABLE `excercises`
+ALTER TABLE `exercises`
   ADD PRIMARY KEY (`excercise_id`),
-  ADD KEY `fk_excercises_users` (`user_id`);
+  ADD KEY `fk_exercises_users` (`user_id`);
 
 --
 -- Indexen voor tabel `users`
@@ -85,10 +86,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT voor een tabel `excercises`
+-- AUTO_INCREMENT voor een tabel `exercises`
 --
-ALTER TABLE `excercises`
-  MODIFY `excercise_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `exercises`
+  MODIFY `excercise_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
@@ -101,10 +102,10 @@ ALTER TABLE `users`
 --
 
 --
--- Beperkingen voor tabel `excercises`
+-- Beperkingen voor tabel `exercises`
 --
-ALTER TABLE `excercises`
-  ADD CONSTRAINT `fk_excercises_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `exercises`
+  ADD CONSTRAINT `fk_exercises_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

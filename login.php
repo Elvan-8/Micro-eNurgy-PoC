@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Inloggen - Micro-eNurgy</title>
+    <title>Inloggen - Micro eNurgy</title>
     <style>
         body { font-family: sans-serif; display: grid; place-items: center; min-height: 100vh; }
         form { border: 1px solid #ccc; padding: 20px; }

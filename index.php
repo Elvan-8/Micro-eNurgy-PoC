@@ -19,15 +19,15 @@ $resultaten = [];
 
 try {
     $sql = "SELECT 
-                excercises.titel, 
-                excercises.beschrijving, 
+                exercises.titel, 
+                exercises.beschrijving, 
                 users.naam 
             FROM 
-                excercises 
+                exercises 
             JOIN 
-                users ON excercises.user_id = users.user_id
+                users ON exercises.user_id = users.user_id
             WHERE 
-                excercises.user_id = ?";
+                exercises.user_id = ?";
     
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$huidige_user_id]);
@@ -54,8 +54,43 @@ try {
 
 </br><a href="logout.php">Log uit</a></br>
 
+    <hr>
+
+    <form action="create_exercise.php" method="POST" style="margin-bottom: 20px; background: #f4f4f4; padding: 10px;">
+        <h3>Nieuwe Oefening Toevoegen</h3>
+        <div>
+            <label for="titel">Titel:</label>
+            <input type="text" id="titel" name="titel">
+        </div>
+        <div>
+            <label for="beschrijving">Beschrijving:</label>
+            <textarea id="beschrijving" name="beschrijving" rows="3"></textarea>
+        </div>
+        <button type="submit">Opslaan</button>
+    </form>
+
+
+
     <h1>Welkom, <?php echo htmlspecialchars($_SESSION['user_naam']); ?></h1>
     <p>Hier zijn jouw opgeslagen oefeningen:</p>
-
+      <?php if (empty($resultaten)): ?>
+    
+        <p>Je hebt nog geen oefeningen aangemaakt.</p>
+    
+       <?php else: ?>
+      
+          <?php foreach ($resultaten as $oefening): ?>
+              
+              <div class="oefening" style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+                  
+                  <h2><?php echo htmlspecialchars($oefening['titel']); ?></h2>
+                  <p><?php echo htmlspecialchars($oefening['beschrijving']); ?></p>
+              
+              </div>
+          
+          <?php endforeach; ?>
+      
+      <?php endif; ?>
+      
     </body>
 </html>
