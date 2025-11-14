@@ -22,7 +22,8 @@ try {
     // Als de 'try' mislukt, springt PHP hierheen.
     // $e bevat het foutobject.
     // getMessage() geeft de mens-leesbare fout.
-    echo "Verbinding mislukt: " . $e->getMessage();
+    echo "Verbinding Mislukt..." ;
+    die;
 }
 
 ?>
