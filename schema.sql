@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Gegenereerd op: 14 nov 2025 om 15:28
+-- Gegenereerd op: 14 nov 2025 om 16:07
 -- Serverversie: 8.0.40
 -- PHP-versie: 8.3.14
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `exercises` (
-  `excercise_id` int NOT NULL,
+  `exercise_id` int NOT NULL,
   `titel` varchar(255) NOT NULL,
   `beschrijving` text NOT NULL,
   `user_id` int NOT NULL
@@ -38,7 +38,7 @@ CREATE TABLE `exercises` (
 -- Gegevens worden geëxporteerd voor tabel `exercises`
 --
 
-INSERT INTO `exercises` (`excercise_id`, `titel`, `beschrijving`, `user_id`) VALUES
+INSERT INTO `exercises` (`exercise_id`, `titel`, `beschrijving`, `user_id`) VALUES
 (1, 'Eerste oefening', 'Dit is hoe je de oefening uitvoert.', 1),
 (2, 'Oefening 2', 'Deze oefening is echt heel goed.', 2),
 (3, '<script>alert(\'Ik ben gehackt\');</script>', '', 1),
@@ -72,7 +72,7 @@ INSERT INTO `users` (`user_id`, `naam`, `wachtwoord`) VALUES
 -- Indexen voor tabel `exercises`
 --
 ALTER TABLE `exercises`
-  ADD PRIMARY KEY (`excercise_id`),
+  ADD PRIMARY KEY (`exercise_id`),
   ADD KEY `fk_exercises_users` (`user_id`);
 
 --
@@ -89,7 +89,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `exercises`
 --
 ALTER TABLE `exercises`
-  MODIFY `excercise_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `exercise_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`

@@ -19,6 +19,7 @@ $resultaten = [];
 
 try {
     $sql = "SELECT 
+                exercises.exercise_id,
                 exercises.titel, 
                 exercises.beschrijving, 
                 users.naam 
@@ -34,10 +35,6 @@ try {
     
     $resultaten = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // DEZE LOGICA IS NU OVERBODIG. We hebben de naam al.
-    // if (!empty($resultaten)) {
-    //     $gebruikersnaam = $resultaten[0]['naam'];
-    // }
 
 } catch (PDOException $e) {
     die("Fout bij het ophalen van data: " . $e->getMessage());
@@ -85,7 +82,14 @@ try {
                   
                   <h2><?php echo htmlspecialchars($oefening['titel']); ?></h2>
                   <p><?php echo htmlspecialchars($oefening['beschrijving']); ?></p>
-              
+                  
+                </br>
+                  
+                <form action="delete_exercise.php" method="POST">
+                  <input type="hidden" name="exercise_id" value="<?php echo htmlspecialchars($oefening['exercise_id']); ?>">
+                  <button type="submit">Verwijder</button>
+                </form>
+
               </div>
           
           <?php endforeach; ?>
