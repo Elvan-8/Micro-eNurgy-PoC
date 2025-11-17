@@ -1,19 +1,15 @@
 <?php
-// ----- DEEL 0: DE UITSMIJTER (NIEUW) -----
-session_start(); // Dit MOET de allereerste regel zijn.
 
-// De controle: Is er een 'user_id' ticket in de kluis?
+session_start();
+
 if ( !isset($_SESSION['user_id']) ) {
-    // Geen ticket? Je hoort hier niet. Terug naar de poort.
     header('Location: login.php');
-    exit; // STOP HET SCRIPT.
+    exit;
 }
 
-// ----- DEEL 1: DE PHP-LOGICA (NU AANGEPAST) -----
-// Als we hier komen, is de gebruiker ingelogd.
 require_once 'connect.php';
 
-// NIET MEER HARDCODED! We lezen het ticket.
+
 $huidige_user_id = $_SESSION['user_id']; 
 $resultaten = [];
 
@@ -40,7 +36,7 @@ try {
     die("Fout bij het ophalen van data: " . $e->getMessage());
 }
 
-// ----- DEEL 2: DE HTML-PRESENTATIE -----
+
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -83,6 +79,8 @@ try {
                   <h2><?php echo htmlspecialchars($oefening['titel']); ?></h2>
                   <p><?php echo htmlspecialchars($oefening['beschrijving']); ?></p>
                   
+                </br>
+                <a href="edit_exercise.php?id=<?php echo htmlspecialchars($oefening['exercise_id']); ?>">Bewerk</a>
                 </br>
                   
                 <form action="delete_exercise.php" method="POST">
